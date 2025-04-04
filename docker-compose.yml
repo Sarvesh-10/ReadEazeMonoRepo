@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: readeaze-frontend
+    expose:
+      - "3000"
+    networks:
+      - readeaze-net
+
+  backend:
+    build: ./backend
+    container_name: readeaze-backend
+    expose:
+      - "8080"
+    networks:
+      - readeaze-net
+
+  llm:
+    build: ./llm
+    container_name: readeaze-llm
+    expose:
+      - "8000"
+    networks:
+      - readeaze-net
+
+  nginx:
+    image: nginx:latest
+    container_name: readeaze-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - frontend
+      - backend
+      - llm
+    networks:
+      - readeaze-net
+
+networks:
+  readeaze-net:
+    driver: bridge
