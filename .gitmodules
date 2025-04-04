@@ -1,0 +1,9 @@
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/Sarvesh-10/ReadEaze.git
+[submodule "backend"]
+	path = backend
+	url = https://github.com/Sarvesh-10/ReadEazeGoBackend.git
+[submodule "llm"]
+	path = llm
+	url = https://github.com/Sarvesh-10/ReadEazeLLMService.git
